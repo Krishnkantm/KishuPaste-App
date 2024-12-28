@@ -1,10 +1,7 @@
-import React, { useState } from "react";
 import { Copy } from "lucide-react";
 import toast from "react-hot-toast";
-import { useParams, useSearchParams } from "react-router-dom";
-import {useDispatch, useSelector} from "react-redux"
-import { addToPaste, updateToPaste } from "../redux/pasteSlice";
-import { useEffect } from "react";
+import { useParams} from "react-router-dom";
+import {useSelector} from "react-redux"
 
 const ViewPaste = () => {
   
@@ -15,7 +12,7 @@ const ViewPaste = () => {
   console.log("Final past",paste);
 
   return (
-    <div className="w-[900px] h-full py-10 max-w-[1200px] mx-auto px-5 lg:px-0">
+    <div className="w-[980px] h-full py-10  1 mx-auto px-5 lg:px-0">
       <div className="flex flex-col gap-y-5 items-start">
       <input
         className="w-full text-white border border-input rounded-md p-2"
@@ -31,7 +28,7 @@ const ViewPaste = () => {
       </button> */}
     {/* </div> */}
     
-    <div className={`w-[900px] flex flex-col items-start relative rounded bg-opacity-10 border border-[rgba(128,121,121,0.3)] backdrop-blur-2xl`}>
+    <div className={`w-full flex flex-col items-start relative rounded bg-opacity-10 border border-[rgba(128,121,121,0.3)] backdrop-blur-2xl`}>
       
     <div className={`w-full rounded-t flex items-center justify-between gap-x-4 px-4 py-2 border-b border-[rgba(128,121,121,0.3)]`}>
     
@@ -64,11 +61,11 @@ const ViewPaste = () => {
             value={paste.content}
             disabled
             placeholder="Write Your Content Here...."
-            className="w-full p-3  focus-visible:ring-0"
+            className="w-[980px] p-3  focus-visible:ring-0"
             style={{
               caretColor: "#000",
             }}
-            rows={11}
+            rows={12}
           />
     </div>
   </div>
@@ -76,4 +73,4 @@ const ViewPaste = () => {
   );
 };
 
-export default ViewPaste
+export default ViewPaste;

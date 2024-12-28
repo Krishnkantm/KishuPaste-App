@@ -1,34 +1,21 @@
-import React, { useState } from "react";
-import { Copy, PlusCircle } from "lucide-react";
-import { useSearchParams } from "react-router-dom";
-import {useDispatch, useSelector} from "react-redux"
-import { addToPaste, updateToPaste } from "../redux/pasteSlice";
-import { useEffect } from "react";
+import { useState } from "react";//second
+import { Copy, PlusCircle } from "lucide-react";///first
+import { useSearchParams } from "react-router-dom";//sixth
+import toast from "react-hot-toast";//tird
+import {useDispatch, useSelector} from "react-redux"//fourth
+import { addToPaste, updateToPaste } from "../redux/pasteSlice";//fifth
+import { useEffect } from "react";//second
 // import { Copy, PlusCircle } from "lucide-react";
 
 const Home = () => {
-  const [title, setTitle] = useState("");
   const [value, setValue] = useState("");
+  const [title, setTitle] = useState("");
   const [searchParams, setSearchParams] = useSearchParams();
   const pasteId = searchParams.get("pasteId");
+  const pastes = useSelector((state)=>state.paste.pastes);
   const dispatch = useDispatch();
-  const allPastes = useSelector((state)=>state.paste.pastes);
-
-  const resetPaste = () => {
-    setTitle("");
-    setValue("");
-    setSearchParams({});
-    // navigate("/");
-  };
-
-  useEffect(() => {
-    if(pasteId){
-     const paste = allPastes.find((p) => p._id === pasteId);
-     setTitle(paste.title);
-     setValue(paste.content);
-    }
- }, [pasteId])
-
+  
+  
   function createPaste() {
     const paste = {
        title : title,
@@ -53,8 +40,25 @@ const Home = () => {
      setSearchParams({});
   }
 
+  const resetPaste = () => {
+    setTitle("");
+    setValue("");
+    setSearchParams({});
+    // navigate("/");
+  };
+
+  useEffect(() => {
+    if(pasteId){
+     const paste = pastes.find((p) => p._id === pasteId);
+     setTitle(paste.title);
+     setValue(paste.content);
+    }
+ }, [pasteId,pastes]);
+
+    
+
   return (
-    <div className="w-full h-full py-10 max-w-[1200px] mx-auto px-5 lg:px-0">
+    <div className="w-full h-full py-10 max-w-[1180px] mx-auto px-5 lg:px-0">
     <div className="flex flex-col gap-y-5 items-start">
       <div className="w-full flex flex-row gap-x-4 justify-between items-center">
         <input
@@ -69,7 +73,7 @@ const Home = () => {
 
         />
 
-        <button onClick={createPaste} className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700">
+        <button onClick={createPaste} className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 ">
           {pasteId ? "Update My Paste" : "Create My Paste"}
         </button>
         
@@ -81,7 +85,7 @@ const Home = () => {
           </button>}
       </div>
       <div
-          className={`w-[900px] flex flex-col items-start relative rounded bg-opacity-10 border border-[rgba(128,121,121,0.3)] backdrop-blur-2xl`}
+          className={`w-full flex flex-col items-start relative rounded bg-opacity-10 border border-[rgba(128,121,121,0.3)] backdrop-blur-2xl`}
         >
 
       <div className={`w-full rounded-t flex items-center justify-between gap-x-4 px-4 py-2 border-b border-[rgba(128,121,121,0.3)]`}
@@ -122,7 +126,7 @@ const Home = () => {
             caretColor: "#000",
           }}
 
-          rows={11}
+          rows={12}
         />
       </div>
     </div>

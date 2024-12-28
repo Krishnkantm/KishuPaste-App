@@ -1,10 +1,10 @@
 import { Calendar, Copy, Eye, PencilLine, Trash2 } from "lucide-react";
-import React from "react";
-import { FormatDate } from "../utlis/formateDate";
-import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { removeFromPaste } from "../redux/pasteSlice";
 import toast from "react-hot-toast";
+import { useDispatch, useSelector } from "react-redux";
+import { useState } from "react";
+import React from "react";
+import { removeFromPaste } from "../redux/pasteSlice";
+import { FormatDate } from "../utlis/formateDate";
 import { Link } from "react-router-dom";
 import {
   FacebookShareButton,
@@ -22,9 +22,9 @@ import {
 const Paste = () => {
   const pastes = useSelector((state) => state.paste.pastes);
 
-  const [searchTerm, setSearchTerm] = useState("");
-
   const dispatch = useDispatch();
+
+  const [searchTerm, setSearchTerm] = useState("");
 
   const shareUrl = window.location.href; //my own
 
@@ -33,19 +33,19 @@ const Paste = () => {
   //   paste.title.toLowerCase().includes(searchTerm.toLowerCase())
   // );
   // Filter pastes based on search term (by title or content)
-  const filteredPastes = pastes.filter((paste) =>
-    paste.title.toLowerCase().includes(searchTerm.toLowerCase())
-  );
-
   function handleDelete(pasteId) {
     dispatch(removeFromPaste(pasteId));
   }
 
+  const filteredPastes = pastes.filter((paste) =>
+    paste.title.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   return (
-    <div className="w-full h-full py-10 max-w-[1200px] mx-auto px-5 lg:px-0">
+    <div className="w-[1000px] h-full py-10 max-w-[1200px] mx-auto px-5 lg:px-0">
       <div className="flex flex-col gap-y-3">
         {/* Search */}
-        <div className="w-full flex gap-3 px-4 py-2  rounded-[0.3rem] border border-[rgba(128,121,121,0.3)]  mt-6">
+        <div className="w-[1000px] flex gap-3 px-4 py-2  rounded-[0.3rem] border border-[rgba(128,121,121,0.3)]  mt-6">
           <input
             className="focus:outline-none w-full bg-transparent"
             type="search"
