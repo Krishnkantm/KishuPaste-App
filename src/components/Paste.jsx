@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import React from "react";
 import { removeFromPaste } from "../redux/pasteSlice";
-import { FormatDate } from "../utlis/formateDate";
+import { formatDate } from "../utils/formatDate";  // Corrected path
 import { Link } from "react-router-dom";
 import {
   FacebookShareButton,
@@ -155,7 +155,7 @@ const Paste = () => {
 
                       <div className="flex flex-row justify-end items-end">
                     <Calendar size={30} />
-                    {FormatDate(paste?.createdAt)}
+                    {formatDate(paste?.createdAt)}
                   </div>
                      
                   </div>
