@@ -69,7 +69,7 @@ const Home = () => {
           onChange={(e) => setTitle(e.target.value)}
           className={`${
             pasteId ? "w-[80%]" : "w-[85%]"
-          } text-white border border-input rounded-md p-2`}
+          } text-red-600 border border-input rounded-md p-2`}
 
         />
 
